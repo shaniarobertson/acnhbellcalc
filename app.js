@@ -7,7 +7,7 @@ app.appendChild(container);
 
 var request = new XMLHttpRequest();
 
-request.open("GET", "http://acnhapi.com/v1a/fish/", true);
+request.open("GET", "http://acnhapi.com/v1/fish/", true);
 request.onload = function () {
   // Begin accessing JSON data here
   var data = JSON.parse(this.response);
