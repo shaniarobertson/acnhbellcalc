@@ -68,7 +68,7 @@ async function renderSea() {
     let htmlSegment = `<div class="item">
                               <h2>${name}</h2>
                               <h3>${sea.price}</h3>
-                              <button class="price" value="${sea.price}">Add to Cart</button>
+                              <button class="priceButton" value=${sea.price} onclick="total()">Add to Cart</button>
                           </div>`;
     html += htmlSegment;
   });
@@ -78,3 +78,28 @@ async function renderSea() {
 }
 
 renderSea();
+
+function total() {
+  let sum = 0;
+  let btn = document.querySelectorAll(".priceButton");
+  for (var i = 0; i < btn.length; i++) {
+    btn[i].addEventListener("click", function () {
+      let itemPrice = parseInt(this.value);
+      //console.log(itemPrice);
+      sum += itemPrice;
+      console.log(sum);
+
+      let html = "";
+      let htmlSegment = `<p>${sum}</p>`;
+      html += htmlSegment;
+
+      let totalContainer = document.querySelector(".total-container");
+      totalContainer.innerHTML = html;
+    });
+  }
+}
+
+/*
+ currently, this is adding the values to an array.
+ move sum logic back to its own function?
+*/
