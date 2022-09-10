@@ -17,7 +17,9 @@
 
   <body>
     <div class="container">
-      <div class="total-container"></div>
+      <div class="total-container"><p id="total">Total:</p></div>
+      <label for="searchbox">Search</label>
+      <input type="search" oninput="searchBox()" id="searchBox" />
       <button type="button" class="collapsible" onClick="collapse()">
         Fish
       </button>

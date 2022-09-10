@@ -3,6 +3,8 @@
     margin: 0 auto;
   }
 
+  .is-hidden { display: none; }
+
   .collapsible {
     background-color: #eee;
     color: #444;

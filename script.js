@@ -1,3 +1,14 @@
+const searchBox = document.getElementById("searchBox");
+let allItems = [];
+
+searchBox.addEventListener("keyup", (e) => {
+  const searchString = e.target.value.toLowerCase();
+  const filteredItems = allItems.filter((item) => {
+    return item.name.toLowerCase().includes(searchString);
+  });
+  displayAllItems(filteredItems);
+});
+
 function collapse() {
   var coll = document.getElementsByClassName("collapsible");
   var i;
@@ -36,7 +47,7 @@ async function renderFish() {
     let htmlSegment = `<div class="item">
                             <h2>${name}</h2>
                             <h3>${fish.price}</h3>
-                            <button class="price">Add to Cart</button>
+                            <button class="priceButton" value=${fish.price} onclick="btnEvent()">Add to Cart</button>
                         </div>`;
     html += htmlSegment;
   });
@@ -44,8 +55,6 @@ async function renderFish() {
   let fishContainer = document.querySelector(".fish-container");
   fishContainer.innerHTML = html;
 }
-
-renderFish();
 
 async function getSea() {
   let url = "http://acnhapi.com/v1a/sea/";
@@ -68,7 +77,7 @@ async function renderSea() {
     let htmlSegment = `<div class="item">
                               <h2>${name}</h2>
                               <h3>${sea.price}</h3>
-                              <button class="priceButton" value=${sea.price} onclick="total()">Add to Cart</button>
+                              <button class="priceButton" value=${sea.price} onclick="btnEvent()">Add to Cart</button>
                           </div>`;
     html += htmlSegment;
   });
@@ -77,29 +86,35 @@ async function renderSea() {
   seaContainer.innerHTML = html;
 }
 
-renderSea();
+function displayAllItems() {
+  renderFish();
+  renderSea();
+}
 
-function total() {
-  let sum = 0;
+function btnEvent() {
   let btn = document.querySelectorAll(".priceButton");
   for (var i = 0; i < btn.length; i++) {
-    btn[i].addEventListener("click", function () {
-      let itemPrice = parseInt(this.value);
-      //console.log(itemPrice);
-      sum += itemPrice;
-      console.log(sum);
-
-      let html = "";
-      let htmlSegment = `<p>${sum}</p>`;
-      html += htmlSegment;
-
-      let totalContainer = document.querySelector(".total-container");
-      totalContainer.innerHTML = html;
-    });
+    btn[i].addEventListener("click", getPrice);
   }
 }
 
-/*
- currently, this is adding the values to an array.
- move sum logic back to its own function?
-*/
+function getPrice() {
+  let itemPrice = parseInt(this.value);
+  //console.log(itemPrice);
+  total(itemPrice);
+}
+
+let sum = 0;
+function total(itemPrice) {
+  sum += itemPrice;
+  //console.log(sum);
+
+  let html = "";
+  let htmlSegment = `<p>Total: ${sum} bells</p>`;
+  html += htmlSegment;
+
+  let totalContainer = document.querySelector(".total-container");
+  totalContainer.innerHTML = html;
+}
+
+displayAllItems();
