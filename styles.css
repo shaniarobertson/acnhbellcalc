@@ -22,7 +22,7 @@
     background-color: #ccc;
   }
 
-  .fish-container, .sea-container {
+  .fish-container, .sea-container, .bugs-container, .fossils-container {
     flex-wrap: wrap;
     padding: 0 18px;
     display: none;

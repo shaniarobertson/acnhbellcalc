@@ -1,14 +1,3 @@
-const searchBox = document.getElementById("searchBox");
-let allItems = [];
-
-searchBox.addEventListener("keyup", (e) => {
-  const searchString = e.target.value.toLowerCase();
-  const filteredItems = allItems.filter((item) => {
-    return item.name.toLowerCase().includes(searchString);
-  });
-  displayAllItems(filteredItems);
-});
-
 function collapse() {
   var coll = document.getElementsByClassName("collapsible");
   var i;
@@ -26,6 +15,14 @@ function collapse() {
   }
 }
 
+/*
+let urlFish = fetch("http://acnhapi.com/v1a/fish/");
+let urlSea = fetch("http://acnhapi.com/v1a/sea/");
+let urlBugs = fetch("http://acnhapi.com/v1a/bugs/");
+let urlFossils = fetch("http://acnhapi.com/v1a/fossils/");
+*/
+
+// Fish
 async function getFish() {
   let url = "http://acnhapi.com/v1a/fish/";
   try {
@@ -45,10 +42,10 @@ async function renderFish() {
     let price = fish.price;
 
     let htmlSegment = `<div class="item">
-                            <h2>${name}</h2>
-                            <h3>${fish.price}</h3>
-                            <button class="priceButton" value=${fish.price} onclick="btnEvent()">Add to Cart</button>
-                        </div>`;
+                              <h2>${name}</h2>
+                              <h3>${fish.price}</h3>
+                              <button class="priceButton" value=${fish.price} onclick="btnEvent()">Add to Cart</button>
+                          </div>`;
     html += htmlSegment;
   });
 
@@ -56,6 +53,7 @@ async function renderFish() {
   fishContainer.innerHTML = html;
 }
 
+// Sea
 async function getSea() {
   let url = "http://acnhapi.com/v1a/sea/";
   try {
@@ -86,9 +84,73 @@ async function renderSea() {
   seaContainer.innerHTML = html;
 }
 
+// Bugs
+async function getBugs() {
+  let url = "http://acnhapi.com/v1a/bugs/";
+  try {
+    let response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function renderBugs() {
+  let data = await getBugs();
+  let html = "";
+
+  data.forEach((bugs) => {
+    let name = bugs["file-name"].replace(/_|\-/g, " ");
+    let price = bugs.price;
+
+    let htmlSegment = `<div class="item">
+                              <h2>${name}</h2>
+                              <h3>${bugs.price}</h3>
+                              <button class="priceButton" value=${bugs.price} onclick="btnEvent()">Add to Cart</button>
+                          </div>`;
+    html += htmlSegment;
+  });
+
+  let bugsContainer = document.querySelector(".bugs-container");
+  bugsContainer.innerHTML = html;
+}
+
+// Fossils
+async function getFossils() {
+  let url = "http://acnhapi.com/v1a/fossils/";
+  try {
+    let response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function renderFossils() {
+  let data = await getFossils();
+  let html = "";
+
+  data.forEach((fossils) => {
+    let name = fossils["file-name"].replace(/_|\-/g, " ");
+    let price = fossils.price;
+
+    let htmlSegment = `<div class="item">
+                              <h2>${name}</h2>
+                              <h3>${fossils.price}</h3>
+                              <button class="priceButton" value=${fossils.price} onclick="btnEvent()">Add to Cart</button>
+                          </div>`;
+    html += htmlSegment;
+  });
+
+  let fossilsContainer = document.querySelector(".fossils-container");
+  fossilsContainer.innerHTML = html;
+}
+
 function displayAllItems() {
   renderFish();
   renderSea();
+  renderBugs();
+  renderFossils();
 }
 
 function btnEvent() {

@@ -17,9 +17,12 @@
 
   <body>
     <div class="container">
+      <h1>Animal Crossing: New Horizons Bell Calculator</h1>
       <div class="total-container"><p id="total">Total:</p></div>
-      <label for="searchbox">Search</label>
-      <input type="search" oninput="searchBox()" id="searchBox" />
+      <!-- Look into search functionality later
+        <label for="searchbox">Search</label>
+        <input type="search" oninput="searchBox()" id="searchBox" /> 
+      -->
       <button type="button" class="collapsible" onClick="collapse()">
         Fish
       </button>
@@ -28,6 +31,14 @@
         Sea Creatures
       </button>
       <div class="sea-container"></div>
+      <button type="button" class="collapsible" onClick="collapse()">
+        Bugs
+      </button>
+      <div class="bugs-container"></div>
+      <button type="button" class="collapsible" onClick="collapse()">
+        Fossils
+      </button>
+      <div class="fossils-container"></div>
     </div>
     <script src="script.js"></script>
   </body>
