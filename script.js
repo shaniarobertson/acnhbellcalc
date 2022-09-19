@@ -6,10 +6,10 @@ function collapse() {
     coll[i].addEventListener("click", function () {
       this.classList.toggle("active");
       var content = this.nextElementSibling;
-      if (content.style.display === "flex") {
+      if (content.style.display === "grid") {
         content.style.display = "none";
       } else {
-        content.style.display = "flex";
+        content.style.display = "grid";
       }
     });
   }
@@ -39,13 +39,19 @@ async function renderFish() {
 
   data.forEach((fish) => {
     let name = fish["file-name"].replace(/_|\-/g, " ");
+    let photo = fish["icon_uri"];
     let price = fish.price;
 
-    let htmlSegment = `<div class="item">
-                              <h2>${name}</h2>
-                              <h3>${fish.price}</h3>
-                              <button class="priceButton" value=${fish.price} onclick="btnEvent()">Add to Cart</button>
-                          </div>`;
+    let htmlSegment = `<div class="card">
+                          <h6 class="card-header">${name}</h6>
+                          <img class="card-img-top" src=${photo} alt=${name} + "Image">
+                          <div class="card-body>
+                            <h3 class="card-title">${price} bells</h3>
+                            <p>
+                            <button class="priceButton" value=${price} onclick="btnEvent()">Add to Cart</button>
+                            </p>
+                          </div>
+                        </div>`;
     html += htmlSegment;
   });
 
@@ -70,13 +76,19 @@ async function renderSea() {
 
   data.forEach((sea) => {
     let name = sea["file-name"].replace(/_|\-/g, " ");
+    let photo = sea["icon_uri"];
     let price = sea.price;
 
-    let htmlSegment = `<div class="item">
-                              <h2>${name}</h2>
-                              <h3>${sea.price}</h3>
-                              <button class="priceButton" value=${sea.price} onclick="btnEvent()">Add to Cart</button>
-                          </div>`;
+    let htmlSegment = `<div class="card">
+                          <h6 class="card-header">${name}</h6>
+                          <img class="card-img-top" src=${photo} alt=${name} + "Image">
+                          <div class="card-body>
+                            <h3 class="card-title">${price} bells</h3>
+                            <p>
+                            <button class="priceButton" value=${price} onclick="btnEvent()">Add to Cart</button>
+                            </p>
+                          </div>
+                        </div>`;
     html += htmlSegment;
   });
 
@@ -101,13 +113,19 @@ async function renderBugs() {
 
   data.forEach((bugs) => {
     let name = bugs["file-name"].replace(/_|\-/g, " ");
+    let photo = bugs["icon_uri"];
     let price = bugs.price;
 
-    let htmlSegment = `<div class="item">
-                              <h2>${name}</h2>
-                              <h3>${bugs.price}</h3>
-                              <button class="priceButton" value=${bugs.price} onclick="btnEvent()">Add to Cart</button>
-                          </div>`;
+    let htmlSegment = `<div class="card">
+                          <h6 class="card-header">${name}</h6>
+                          <img class="card-img-top" src=${photo} alt=${name} + "Image">
+                          <div class="card-body>
+                            <h3 class="card-title">${price} bells</h3>
+                            <p>
+                            <button class="priceButton" value=${price} onclick="btnEvent()">Add to Cart</button>
+                            </p>
+                          </div>
+                        </div>`;
     html += htmlSegment;
   });
 
@@ -132,13 +150,19 @@ async function renderFossils() {
 
   data.forEach((fossils) => {
     let name = fossils["file-name"].replace(/_|\-/g, " ");
+    let photo = fossils["image_uri"];
     let price = fossils.price;
 
-    let htmlSegment = `<div class="item">
-                              <h2>${name}</h2>
-                              <h3>${fossils.price}</h3>
-                              <button class="priceButton" value=${fossils.price} onclick="btnEvent()">Add to Cart</button>
-                          </div>`;
+    let htmlSegment = `<div class="card">
+                          <h6 class="card-header">${name}</h6>
+                          <img class="card-img-top" src=${photo} alt=${name} + "Image">
+                          <div class="card-body>
+                            <h3 class="card-title">${price} bells</h3>
+                            <p>
+                            <button class="priceButton" value=${price} onclick="btnEvent()">Add to Cart</button>
+                            </p>
+                          </div>
+                        </div>`;
     html += htmlSegment;
   });
 
@@ -172,10 +196,10 @@ function total(itemPrice) {
   //console.log(sum);
 
   let html = "";
-  let htmlSegment = `<p>Total: ${sum} bells</p>`;
+  let htmlSegment = `<p>Total: ${sum} bells </p>`;
   html += htmlSegment;
 
-  let totalContainer = document.querySelector(".total-container");
+  let totalContainer = document.querySelector("#total");
   totalContainer.innerHTML = html;
 }
 
