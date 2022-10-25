@@ -1,3 +1,4 @@
+// Collapse Divs
 function collapse() {
   var coll = document.getElementsByClassName("collapsible");
   var i;
@@ -16,10 +17,10 @@ function collapse() {
 }
 
 /*
-let urlFish = fetch("http://acnhapi.com/v1a/fish/");
-let urlSea = fetch("http://acnhapi.com/v1a/sea/");
-let urlBugs = fetch("http://acnhapi.com/v1a/bugs/");
-let urlFossils = fetch("http://acnhapi.com/v1a/fossils/");
+fetch("http://acnhapi.com/v1a/fish/");
+fetch("http://acnhapi.com/v1a/sea/");
+fetch("http://acnhapi.com/v1a/bugs/");
+fetch("http://acnhapi.com/v1a/fossils/");
 */
 
 // Fish
@@ -170,6 +171,16 @@ async function renderFossils() {
   fossilsContainer.innerHTML = html;
 }
 
+// Fruit
+function getFruit() {
+  fetch("./fruits.json")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+
+function renderFruit() {}
+
+// Display
 function displayAllItems() {
   renderFish();
   renderSea();
@@ -177,6 +188,7 @@ function displayAllItems() {
   renderFossils();
 }
 
+// "Add to Cart"
 function btnEvent() {
   let btn = document.querySelectorAll(".priceButton");
   for (var i = 0; i < btn.length; i++) {
@@ -184,6 +196,7 @@ function btnEvent() {
   }
 }
 
+// Total Logic
 function getPrice() {
   let itemPrice = parseInt(this.value);
   //console.log(itemPrice);
@@ -194,6 +207,17 @@ let sum = 0;
 function total(itemPrice) {
   sum += itemPrice;
   //console.log(sum);
+
+  let html = "";
+  let htmlSegment = `<p>Total: ${sum} bells </p>`;
+  html += htmlSegment;
+
+  let totalContainer = document.querySelector("#total");
+  totalContainer.innerHTML = html;
+}
+
+function resetTotal() {
+  sum = 0;
 
   let html = "";
   let htmlSegment = `<p>Total: ${sum} bells </p>`;

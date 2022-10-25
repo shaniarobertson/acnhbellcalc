@@ -1,0 +1,37 @@
+[ 
+    {
+        "id": 1,
+        "name": "peach",
+        "price": 500,
+        "image": "https://dodo.ac/np/images/4/4e/Peach_NH_Inv_Icon.png"
+    },
+
+    {
+        "id": 2,
+        "name": "cherry",
+        "price": 500,
+        "image": "https://dodo.ac/np/images/9/96/Cherry_NH_Inv_Icon.png"
+    },
+
+    {
+        "id": 3,
+        "name": "orange",
+        "price": 500,
+        "image": "https://dodo.ac/np/images/4/49/Orange_NH_Inv_Icon.png"
+    },
+
+    {
+        "id": 4,
+        "name": "pear",
+        "price": 500,
+        "image": "https://dodo.ac/np/images/b/b3/Pear_NH_Inv_Icon.png"
+    },
+
+    {
+        "id": 5,
+        "name": "apple",
+        "price": 500,
+        "image": "https://dodo.ac/np/images/f/f4/Apple_NH_Inv_Icon.png"
+    }
+]
+
